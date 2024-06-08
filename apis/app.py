@@ -21,12 +21,12 @@ class Pokemon(BaseModel):
     legendary: bool
 
 
-@app.get("/pokemon/{item_id}", status_code=status.HTTP_200_OK)
-async def get_pokemon(item_id: int):
+@app.get("/pokemon/{pokemon_id}", status_code=status.HTTP_200_OK)
+async def get_pokemon(pokemon_id: int):
     try:
         with open('apis/pokemon.json', 'r') as f:
             data = json.load(f)
-            pokemon = data.get(str(item_id))
+            pokemon = data.get(str(pokemon_id))
             if not pokemon:
                 raise HTTPException(status_code=404, detail="Pokemon not found")
     except FileNotFoundError:

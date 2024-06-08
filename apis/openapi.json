@@ -5,18 +5,18 @@
     "version": "0.1.0"
   },
   "paths": {
-    "/pokemon/{item_id}": {
+    "/pokemon/{pokemon_id}": {
       "get": {
         "summary": "Get Pokemon",
-        "operationId": "get_pokemon_pokemon__item_id__get",
+        "operationId": "get_pokemon_pokemon__pokemon_id__get",
         "parameters": [
           {
-            "name": "item_id",
+            "name": "pokemon_id",
             "in": "path",
             "required": true,
             "schema": {
               "type": "integer",
-              "title": "Item Id"
+              "title": "Pokemon Id"
             }
           }
         ],
