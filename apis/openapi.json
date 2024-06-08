@@ -1,0 +1,200 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "FastAPI",
+    "version": "0.1.0"
+  },
+  "paths": {
+    "/pokemon/{item_id}": {
+      "get": {
+        "summary": "Get Pokemon",
+        "operationId": "get_pokemon_pokemon__item_id__get",
+        "parameters": [
+          {
+            "name": "item_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Item Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/pokemon": {
+      "post": {
+        "summary": "Add Pokemon",
+        "operationId": "add_pokemon_pokemon_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Pokemon"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "Pokemon": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "type_1": {
+            "type": "string",
+            "title": "Type 1"
+          },
+          "type_2": {
+            "type": "string",
+            "title": "Type 2"
+          },
+          "total": {
+            "type": "integer",
+            "title": "Total"
+          },
+          "attack": {
+            "type": "integer",
+            "title": "Attack"
+          },
+          "hp": {
+            "type": "integer",
+            "title": "Hp"
+          },
+          "defense": {
+            "type": "integer",
+            "title": "Defense"
+          },
+          "sp_atk": {
+            "type": "integer",
+            "title": "Sp Atk"
+          },
+          "sp_def": {
+            "type": "integer",
+            "title": "Sp Def"
+          },
+          "speed": {
+            "type": "integer",
+            "title": "Speed"
+          },
+          "generation": {
+            "type": "integer",
+            "title": "Generation"
+          },
+          "legendary": {
+            "type": "boolean",
+            "title": "Legendary"
+          }
+        },
+        "type": "object",
+        "required": [
+          "name",
+          "type_1",
+          "type_2",
+          "total",
+          "attack",
+          "hp",
+          "defense",
+          "sp_atk",
+          "sp_def",
+          "speed",
+          "generation",
+          "legendary"
+        ],
+        "title": "Pokemon"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      }
+    }
+  }
+}
