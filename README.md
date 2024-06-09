@@ -1,4 +1,5 @@
-# pokedex
+# Pokedex
+A simple Fast API REST endpoints to get a pokemon and create a new pokemon. 
 
 ## To run
 1) Clone repo `git clone git@github.com:ryanarj/pokedex.git`
