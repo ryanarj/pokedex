@@ -25,6 +25,16 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Pokemon"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Response",
+            "content": {
+              "application/json": {
                 "schema": {}
               }
             }
@@ -33,9 +43,15 @@
             "description": "Validation Error",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {}
               }
             }
           }
@@ -61,12 +77,24 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {}
+              "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
               }
             }
           },
           "422": {
             "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
             "content": {
               "application/json": {
                 "schema": {

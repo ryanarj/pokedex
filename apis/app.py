@@ -28,16 +28,22 @@ async def get_pokemon(pokemon_id: int):
             data = json.load(f)
             pokemon = data.get(str(pokemon_id))
             if not pokemon:
-                raise HTTPException(status_code=404, detail="Pokemon not found")
+                raise HTTPException(
+                    status_code=status.HTTP_404_NOT_FOUND, detail="Pokemon not found"
+                )
     except FileNotFoundError:
-        raise HTTPException(status_code=404, detail="Pokemon data file not found")
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, detail="Pokemon data file not found"
+        )
     except Exception as e:
-        raise HTTPException(status_code=500, detail="Internal server error")
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=f"Internal server error, error {e}"
+        )
 
     return {"data": pokemon}
 
 
-@app.post("/pokemon", status_code=201)
+@app.post("/pokemon", status_code=status.HTTP_201_CREATED)
 async def add_pokemon(pokemon: Pokemon):
     try:
         with open('apis/pokemon.json', 'r+') as f:
@@ -50,6 +56,8 @@ async def add_pokemon(pokemon: Pokemon):
             json.dump(data, f, indent=4)
             f.truncate()
     except Exception as e:
-        raise HTTPException(status_code=400, detail="Failed to add Pokemon")
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST, detail=f"Failed to add Pokemon, ERROR: {e}"
+        )
 
     return {"data": data.get(new_id)}
